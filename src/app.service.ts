@@ -1,9 +1,10 @@
 import * as fs from 'fs';
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import Wallet from 'ethereumjs-wallet';
 import Web3 from 'web3';
 import { AbiItem } from 'web3-utils';
+
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
@@ -29,9 +30,8 @@ export class AppService {
       };
     } catch (e) {
       console.log(e);
+      return { message: 'something wrong', error: e.message, code: 400 };
     }
-
-    return 'something wrong';
   }
 
   async getTokenBalance(token_contract_addr: string, user_addr: string) {
@@ -49,9 +49,8 @@ export class AppService {
       };
     } catch (e) {
       console.log(e);
+      return { message: 'something wrong', error: e.message, code: 400 };
     }
-
-    return 'something wrong';
   }
 
   async sendToken(
@@ -86,18 +85,11 @@ export class AppService {
         priv_key,
       );
 
-      const result_send = await this.web3.eth.sendSignedTransaction(
-        sign_tx.rawTransaction,
-      );
-
-      console.log(result_send);
-
-      return result_send;
+      return await this.web3.eth.sendSignedTransaction(sign_tx.rawTransaction);
     } catch (e) {
       console.log(e);
+      return { message: 'something wrong', error: e.message, code: 400 };
     }
-
-    return 'something wrong';
   }
 
   async generateAddress() {
