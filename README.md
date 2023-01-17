@@ -14,22 +14,12 @@ $ npm run start
 $ npm run start:dev
 ```
 
-## Test
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
 ## Support
 
 For update rpc web3 (default use eth "Goerli") use [list](https://rpc.info/).
+For [eth](https://goerlifaucet.com/).
+For [token](https://faucets.chain.link/).
+
 
 ## Stay in touch
 
